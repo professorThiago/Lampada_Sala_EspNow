@@ -61,20 +61,21 @@ static IPAddress DNS1     (172, 16,   0,   1);
 // #define PINO_LAMPADA_2     5
 // #define PINO_BOTAO_1       19
 // #define PINO_BOTAO_2       21
+// #define LAMPADA_ATIVO_ALTO false
 
 #define PINO_LAMPADA_1     13
 #define PINO_LAMPADA_2     12
 #define PINO_BOTAO_1       14
 #define PINO_BOTAO_2       27
-
 #define LAMPADA_ATIVO_ALTO true
+
 #define BOTAO_PRESSIONADO  LOW
 
 // Tempos (ms)
 #define MS_DEBOUNCE        50
-#define MS_PRESSAO_LONGA   2000
+#define MS_PRESSAO_LONGA   1000
 #define MS_TIMEOUT_SYNC    7000
-#define MS_HEARTBEAT       1000
+#define MS_HEARTBEAT       500
 
 // Robustez de envio
 #define N_REPETICOES       3      // copias por comando (burst)
@@ -215,7 +216,7 @@ void processarMensagem(const Mensagem &m) {
 
   switch (m.tipo) {
 
-    case MSG_ESTADO: = LAMPADA_ATIVO_ALTO ? ligada : !ligada;
+    case MSG_ESTADO:
       lampRemota[0] = m.lamp1;
       lampRemota[1] = m.lamp2;
       break;
@@ -469,8 +470,3 @@ void loop() {
                   modoSync ? "SIM" : "nao");
   }
 }
-
-
-
-
-
